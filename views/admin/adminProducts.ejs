@@ -1,0 +1,198 @@
+<%- include('./partials/adminnav') %>
+
+
+
+    <div id="main">
+
+        <div class="head">
+            <div class="col-div-6">
+                <p class="nav"> Products</p>
+
+            </div>
+
+            <div class="col-div-6">
+                <i class="fa fa-search search-icon"></i>
+
+
+                <i class="fa fa-bell noti-icon"></i>
+                <div class="notification-div">
+                    <p class="noti-head">Notification <span>2</span></p>
+                    <hr class="hr" />
+                    <p>Your Order is Placed
+                        <span>Lorem Ipsum is simply dummy </span>
+                    </p>
+                    <p>Your Order is Placed
+                        <span>Lorem Ipsum is simply dummy </span>
+                    </p>
+                    <p>Your Order is Placed
+                        <span>Lorem Ipsum is simply dummy </span>
+                    </p>
+                </div>
+                <div class="profile">
+
+                    <p><i class="fa-solid fa-user fa-xl" style="color: #7c4ff9;padding-right: 5px;margin-left: -15px;"></i>  ADMIN <i class="fa fa-ellipsis-v dots" aria-hidden="true"></i></p>
+                    <div class="profile-div">
+                        <p><i class="fa fa-user"></i> Profile</p>
+                        <p><i class="fa fa-cogs"></i> Settings</p>
+                        <p onclick="confirmLogout()"><i class="fa fa-power-off"></i> <a  style="text-decoration: none;">Log Out</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="clearfix"></div>
+        <br />
+
+        <% if (successMessage || errorMessage) { %>
+            <div class="position-fixed top-0 start-50 translate-middle-x" style="z-index: 1000; width: 300px;">
+                <div class="alert alert-dismissible fade show <% if (successMessage) { %>alert-success<% } else { %>alert-danger<% } %>" role="alert">
+                    <%= successMessage || errorMessage %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        
+            <script>
+                // Hide the message after 5 seconds
+                setTimeout(function() {
+                    document.querySelector('.alert')?.remove();
+                }, 5000);
+            </script>
+        <% } %>
+
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-right: 30px;">
+            <a href="/addproductspage"><button  type="button" class="btn btn-primary float-right">Add Products</button></a>
+        </div>
+
+        <div class="container" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)">
+ 
+            
+            <div class="row my-5">
+              <table id="example" class="table bg-light table-striped text-center" > 
+                <thead class="thead-dark text-center">
+                  <tr>
+                    <th class="text-center" scope="col">Number</th>
+                    <th class="text-center" scope="col">Image</th>
+                    <th class="text-center" scope="col">Name</th>
+                    <th class="text-center" scope="col">Price</th>
+                    <th class="text-center" scope="col">Discount Price</th>
+                    <th class="text-center" scope="col">Category</th>
+                    <th class="text-center" scope="col">Brand</th>
+                    <th class="text-center" scope="col">Stock</th>
+                    <th class="text-center" scope="col">Show/Hide</th>
+                    <th class="text-center" scope="col">Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% prdctData.forEach((data,index) => { %>
+                     
+                    
+                  <tr>
+                    <th class="text-center" scope="row"><%-index+1-%></th>
+                    <td><img src="/product_images/<%=data.images[0]%>" alt="" style="width: 80px;height: 80px;"></td>
+                    <td class="text-center"><%-data.productName-%></td>
+                    <td class="text-center">₹  <%-data.price-%></td>
+                    <td class="text-center">₹  <%-data.DiscountAmount-%></td>
+                    <td class="text-center"><%-data.category_id.categoryName-%></td>
+                    <td class="text-center"><%-data.brand_id.brandName-%></td>
+                    <td class="text-center"><%-data.stockQuantity-%></td>
+                    <%if(data.displayStatus=="Show"){%>
+                        <td class="text-center"><a ><button style="background-color: red; border-radius: 30px; border:none; width:90px; color: white;"  onclick="show_hide('<%-data._id-%>')">Hide</button></a></td>
+                      <% } else { %>
+                        <td class="text-center"><a ><button style="background-color: green; border-radius: 30px; border:none; width:90px; color: white;" onclick="show_hide('<%-data._id-%>')">Show</button></a></td>
+                       <% } %>
+
+                    <td>
+                      <a href="/editproducts/<%-data._id-%>"><i class="fa-solid fa-pen-to-square fa-lg mx-1 text-success"></i></a>
+                      <a ><i class="fa-solid fa-trash fa-lg mx-1 text-danger" onclick="deleteProduct('<%-data._id-%>')"></i></a>
+                    </td>
+                  </tr>
+
+                  <% }) %>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+                          <!-- Add this within your form -->
+        <div class="modal" tabindex="-1" role="dialog" id="successModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Product Added</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Your product has been successfully added.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% if (successModal) { %>
+            <script>
+                $(document).ready(function () {
+                    $('#successModal').modal('show');
+                });
+            </script>
+        <% } %>
+
+        
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+        <script>
+            function confirmLogout() {
+                Swal.fire({
+                    title: 'Are you sure you want to logout?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, logout!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/adminlogout';
+                    }
+                });
+            }
+        </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".profile p").click(function () {
+                $(".profile-div").toggle();
+
+            });
+            $(".noti-icon").click(function () {
+                $(".notification-div").toggle();
+            });
+        });
+    </script>
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+    let table = new DataTable('#example');
+  });
+</script>
+
+
+</body>
+
+
+</html>
+

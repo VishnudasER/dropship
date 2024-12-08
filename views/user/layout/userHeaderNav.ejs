@@ -1,0 +1,118 @@
+
+
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="/images/ds_blk.png" style="max-width: 100px;margin-left: -120px;">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav" style="margin-right: -160px;">
+                        <div class="contenir" style="margin-right: 45px;">
+                            <form class="d-flex" action="/search">
+                                <input type="text" name="search" class="search" id="search-inp"
+                                    placeholder="Search...">
+                                <button class="search-btn" id="search-inp-btn">&#x027A4;</button>
+                            </form>
+                        </div>
+                        <li class="scroll-to-section"><a href="/userhome" >Home</a></li>
+                        <li class="scroll-to-section"><a href="/userhome#men">Men's</a></li>
+                        <li class="scroll-to-section"><a href="/userhome#women">Women's</a></li>
+                        <li class="scroll-to-section"><a href="/userhome#kids">Kid's</a></li>
+                        <li class="submenu">
+                            <a href="javascript:;">Pages</a>
+                            <ul>
+                                <li><a href="">About Us</a></li>
+                                <li><a href="">Products</a></li>
+                                <li><a href="contactus">Contact Us</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="javascript:;"><i class="fa-solid fa-user" style="color: #000000;cursor: pointer;"></i></a>
+                            <% if (check) { %>
+
+                            <ul>
+                                <li><a href="/allproducts">All Products</a></li>
+                                <li><a href="/myorders">My Orders</a></li>
+                                <li><a href="/userprofile">My Profile</a></li>
+                                <li><a href="/userwallet">My Wallet</a></li>
+                                <li><a onclick="confirmLogout()">Logout</a></li>
+                            </ul>
+                            <% } else { %>
+                             
+                                <ul>
+                                    <li><a href="/allproducts">All Products</a></li>
+                                    <li><a href="/usersignup">Sign Up</a></li>
+                                    <li><a href="/userlogin">Login</a></li>
+                                </ul>
+
+                            <% } %>
+
+                        </li>
+                        <% if (check) { %>
+                            <li><a href="/wishlist"><i class="fa-solid fa-heart" style="color: #000000;cursor: pointer;"></i></a></li>
+                         <% } else { %>
+                            <li><a href="/nowishlist"><i class="fa-solid fa-heart" style="color: #000000;cursor: pointer;"></i></a></li>
+                        <% } %>
+                            
+
+                        
+
+                        <% if (check) { %>
+
+                             
+                          <li><a href="/usercart">
+                                
+                                <div class="cart">
+                                    <span class="count" style="position: absolute;
+                                    margin-left: 10px;
+                                    z-index: 2;
+                                    font-size: 11px;
+                                    border-radius: 50%;
+                                    background: #d60b28;
+                                    width: 16px;
+                                    height: 16px;
+                                    line-height:16px;
+                                    display: block;
+                                    text-align: center;
+                                    color: white;
+                                    font-family: 'Roboto', sans-serif;
+                                    font-weight: bold;"><%= cartCount %></span>
+                                    <!--   <span class="count">1</span> -->
+                                    <i class="fa-solid fa-cart-shopping" style="color: #000000; cursor: pointer;"></i>
+                                  </div>
+                            </a></li>
+                        <% } else { %>
+                            <li><a href="/nocart"><i class="fa-solid fa-cart-shopping" style="color: #000000;cursor: pointer;"></i></a>
+                            </li>
+                            
+                        <% } %>
+
+
+                        
+
+
+                        <% if (check) { %>
+                            <a href="/userprofile"><div class="" style="color: #000000;text-transform: capitalize;margin-top: 7px;cursor: pointer;">
+                                <%- check.username %>
+                            </div></a>
+                            <% } %>
+
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Include Toastify in your HTML file -->
+
+</header>
+

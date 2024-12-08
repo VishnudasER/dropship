@@ -1,0 +1,418 @@
+<!Doctype HTML>
+<html>
+
+<head>
+    <title>Admin</title>
+    <link rel="stylesheet" href="css/admin.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/65b842e152.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/addPrdct.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+</head>
+
+
+<body style="font-family: Poppins, sans-serif;">
+
+
+
+
+    <div id="mySidenav" class="sidenav">
+        <p class="logo"><img src="/images/ds_wht.png" style="max-width: 120px;margin-left: 10px;"><span class="menu">☰</span></p>
+        <p class="logo1"> <span class="menu1">☰</span></p>
+        <a href="/admindash" class="icon-a"><i class="fa fa-dashboard icons"></i> Dashboard</a>
+        <a href="/adminproducts" class="icon-a"><i class="fa fa-pie-chart icons"></i> Products</a>
+        <a href="/admincategory" class="icon-a"><i class="fa fa-list-alt icons"></i> Category</a>
+        <a href="/admincustomers" class="icon-a"><i class="fa-solid fa-people-group"></i> Customers</a>
+        <a href="/adminbrand" class="icon-a"><i class="fa-solid fa-business-time"></i> Brands</a>
+        <a href="/adminorders" class="icon-a"><i class="fa fa-shopping-bag icons"></i> Orders</a>
+        <a href="/admincoupon" class="icon-a"><i class="fa-solid fa-ticket"></i> Coupons</a>
+        <a href="/adminoffers" class="icon-a"><i class="fa-solid fa-credit-card"></i> Offers</a>
+        <a href="/adminbanner" class="icon-a"><i class="fa fa-user icons"></i> Banner</a>
+        
+    </div>
+
+
+
+    <div id="main">
+
+        <div class="head">
+            <div class="col-div-6">
+                <p class="nav"> Add Products</p>
+
+            </div>
+
+            <div class="col-div-6">
+                <i class="fa fa-search search-icon"></i>
+
+
+                <i class="fa fa-bell noti-icon"></i>
+                <div class="notification-div">
+                    <p class="noti-head">Notification <span>2</span></p>
+                    <hr class="hr" />
+                    <p>Your Order is Placed
+                        <span>Lorem Ipsum is simply dummy </span>
+                    </p>
+                    <p>Your Order is Placed
+                        <span>Lorem Ipsum is simply dummy </span>
+                    </p>
+                    <p>Your Order is Placed
+                        <span>Lorem Ipsum is simply dummy </span>
+                    </p>
+                </div>
+                <div class="profile">
+
+                    <p><i class="fa-solid fa-user fa-xl"
+                            style="color: #7c4ff9;padding-right: 5px;margin-left: -15px;"></i> ADMIN <i
+                            class="fa fa-ellipsis-v dots" aria-hidden="true"></i></p>
+                    <div class="profile-div">
+                        <p><i class="fa fa-user"></i> Profile</p>
+                        <p><i class="fa fa-cogs"></i> Settings</p>
+                        <p onclick="confirmLogout()"><i class="fa fa-power-off"></i> <a  style="text-decoration: none;">Log Out</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="clearfix"></div>
+        <br />
+
+
+
+        <div class="container justify-content-center">
+            <form onsubmit="return validateForm()" id="productForm" action="/addproducts" method="post"
+                enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" placeholder="Do not exceed 50 characters" name="productName"
+                        required maxlength="50" oninput="validateProductName()">
+                    <div class="error-message text-danger" id="productNameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" placeholder="Gender Do not exceed 500 characters. Male"
+                        name="description" required maxlength="500" oninput="validateDescription()"></textarea>
+                    <div class="error-message text-danger" id="descriptionError"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="specification1">Specification 1</label>
+                            <input type="text" id="specification1" placeholder="Specification 1" name="Specification1"
+                                maxlength="150" oninput="validateSpecifications()">
+                            <div class="error-message text-danger" id="specificationError1"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="specification2">Specification 2</label>
+                            <input type="text" id="specification2" placeholder="Specification 2" name="Specification2"
+                                maxlength="150" oninput="validateSpecifications()">
+                            <div class="error-message text-danger" id="specificationError2"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="specification3">Specification 3</label>
+                            <input type="text" id="specification3" placeholder="Specification 3" name="Specification3"
+                                maxlength="150" oninput="validateSpecifications()">
+                            <div class="error-message text-danger" id="specificationError3"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="specification4">Specification 4</label>
+                            <input type="text" id="specification4" placeholder="Specification 4" name="Specification4"
+                                maxlength="150" oninput="validateSpecifications()">
+                            <div class="error-message text-danger" id="specificationError4"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="size-dropdown">
+                    <div class="dropdown">
+                        <label for="category">Category</label>
+                        <select id="category" name="category_id" required oninput="validateCategory()">
+                            <% cat.forEach(ele=> { %>
+                                <option value="<%= ele._id %>" ><%-ele.categoryName-%></option>
+                                <% }) %>
+                        </select>
+                        <div class="error-message text-danger" id="categoryError"></div>
+                    </div>
+
+                    <div class="dropdown">
+                        <label for="brand">Brand</label>
+                        <select id="brand" name="brand_id" required oninput="validateBrand()">
+                            <% brnd.forEach(ele=> { %>
+                                <option value="<%= ele._id %>" ><%-ele.brandName-%></option>
+                                <% }) %>
+                        </select>
+                        <div class="error-message text-danger" id="brandError"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" id="price" placeholder="Enter the price in rupees" name="price" required
+                        min="0" oninput="validatePrice()">
+                    <div class="error-message text-danger" id="priceError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="discountPrice">Discount Price</label>
+                    <input type="number" id="discountPrice" placeholder="Enter the discount price in rupees"
+                        name="DiscountAmount" required min="0" oninput="validateDiscountPrice()">
+                    <div class="error-message text-danger" id="discountPriceError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="stock">Stock</label>
+                    <input type="number" id="stock" placeholder="Enter the stock quantity" name="stockQuantity" required
+                        min="0" oninput="validateStock()">
+                    <div class="error-message text-danger" id="stockError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">Tags</label>
+                    <textarea id="tags" placeholder="Tags Do not exceed 50 characters" name="Tags" maxlength="50"
+                        oninput="validateTags()"></textarea>
+                    <div class="error-message text-danger" id="tagsError"></div>
+                </div>
+
+                <label for="brand">Upload Images</label><br><br>
+                <div class="image-upload">
+                    <div class="dropzone">
+                        <input type="file" id="productImage1" accept="image/*" name="image1"
+                            onchange="displayImage(this)">
+                        <img id="previewImage1" class="preview-image" alt="Drag & drop or click to select image-1">
+                    </div>
+                    <div class="dropzone">
+                        <input type="file" id="productImage2" accept="image/*" name="image2"
+                            onchange="displayImage(this)">
+                        <img id="previewImage2" class="preview-image" alt="Drag & drop or click to select image-2">
+                    </div>
+                    <div class="dropzone">
+                        <input type="file" id="productImage3" accept="image/*" name="image3"
+                            onchange="displayImage(this)">
+                        <img id="previewImage3" class="preview-image" alt="Drag & drop or click to select image-3">
+                    </div>
+                    <div class="dropzone">
+                        <input type="file" id="productImage4" accept="image/*" name="image4"
+                            onchange="displayImage(this)">
+                        <img id="previewImage4" class="preview-image" alt="Drag & drop or click to select image-4">
+                    </div>
+                </div>
+
+                <div id="allImagesError" class="error-message text-danger"></div>
+
+
+
+                <div class="form-group d-grid gap-2">
+                    <button class="btn btn-primary" type="submit" id="submitButton" disabled>Add Produts</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+    function displayImage(input) {
+        const previewId = input.id.replace('productImage', 'previewImage');
+        const previewImage = document.getElementById(previewId);
+
+        const file = input.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewImage.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+
+            // Call validateImageFormat to check the file format
+            validateImageFormat(file, input);
+        } else {
+            // Clear the preview if no file is selected
+            previewImage.src = '';
+
+            // Clear any existing error message
+            const errorElement = document.getElementById(input.id + 'Error');
+            errorElement.textContent = '';
+
+            // Update submit button status
+            updateSubmitButton();
+        }
+    }
+
+    function validateImageFormat(file, input) {
+        const allowedFormats = ['jpg', 'jpeg', 'png'];
+        const fileFormat = file.name.split('.').pop().toLowerCase();
+
+        const isValidFormat = allowedFormats.includes(fileFormat);
+
+        const errorElement = document.getElementById(input.id + 'Error');
+        errorElement.textContent = isValidFormat ? '' : 'Invalid file format. Supported formats: ' + allowedFormats.join(', ');
+        updateSubmitButton();
+    }
+
+    function checkAllImagesInputted() {
+        const imageInputs = ['productImage1', 'productImage2', 'productImage3', 'productImage4'];
+
+        const allImagesInputted = imageInputs.every(inputId => {
+            const fileInput = document.getElementById(inputId);
+            return fileInput.files.length > 0;
+        });
+
+        const allImagesError = document.getElementById('allImagesError');
+        allImagesError.textContent = allImagesInputted ? '' : 'Please upload all four images.';
+
+        updateSubmitButton();
+    }
+
+
+
+    </script>
+
+    <script>
+
+
+        function validateProductName() {
+            const productName = document.getElementById('productName').value;
+            const productNameError = document.getElementById('productNameError');
+            if (!productName || productName.length > 50) {
+                productNameError.textContent = 'Product Name is required and should not exceed 20 characters.';
+            } else {
+                productNameError.textContent = '';
+            }
+            updateSubmitButton()
+        }
+
+        function validateDescription() {
+            const description = document.getElementById('description').value;
+            const descriptionError = document.getElementById('descriptionError');
+            if (!description || description.length > 500) {
+                descriptionError.textContent = 'Description is required and should not exceed 100 characters.';
+            } else {
+                descriptionError.textContent = '';
+            }
+            updateSubmitButton()
+        }
+
+        function validateSpecifications() {
+            const specification1 = document.getElementById('specification1').value;
+            const specification2 = document.getElementById('specification2').value;
+            const specification3 = document.getElementById('specification3').value;
+            const specification4 = document.getElementById('specification4').value;
+
+            document.getElementById('specificationError1').textContent = !specification1 ? 'Specification 1 is required.' : '';
+            document.getElementById('specificationError2').textContent = !specification2 ? 'Specification 2 is required.' : '';
+            document.getElementById('specificationError3').textContent = !specification3 ? 'Specification 3 is required.' : '';
+            document.getElementById('specificationError4').textContent = !specification4 ? 'Specification 4 is required.' : '';
+            updateSubmitButton()
+
+        }
+
+        function validateCategory() {
+            const category = document.getElementById('category').value;
+            const categoryError = document.getElementById('categoryError');
+            categoryError.textContent = !category ? 'Category is required.' : '';
+            updateSubmitButton()
+        }
+
+        function validateBrand() {
+            const brand = document.getElementById('brand').value;
+            const brandError = document.getElementById('brandError');
+            brandError.textContent = !brand ? 'Brand is required.' : '';
+            updateSubmitButton()
+        }
+
+        function validatePrice() {
+            const price = document.getElementById('price').value;
+            const priceError = document.getElementById('priceError');
+            priceError.textContent = isNaN(price) || price < 0 || /\s/.test(price) ? 'Price should be a non-negative number without spaces.' : '';
+            updateSubmitButton()
+        }
+
+        function validateDiscountPrice() {
+            const discountPrice = document.getElementById('discountPrice').value;
+            const discountPriceError = document.getElementById('discountPriceError');
+            discountPriceError.textContent = isNaN(discountPrice) || discountPrice < 0 || /\s/.test(discountPrice) ? 'Discount Price should be a non-negative number without spaces.' : '';
+            updateSubmitButton()
+        }
+
+        function validateStock() {
+            const stock = document.getElementById('stock').value;
+            const stockError = document.getElementById('stockError');
+            stockError.textContent = isNaN(stock) || stock < 0 || /\s/.test(stock) ? 'Stock should be a non-negative number without spaces.' : '';
+            updateSubmitButton()
+        }
+
+        function updateSubmitButton() {
+            const isValid = validateForm();
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = !isValid;
+        }
+        function validateTags() {
+            const tags = document.getElementById('tags').value;
+            const tagsError = document.getElementById('tagsError');
+            tagsError.textContent = tags.length > 50 ? 'Tags should not exceed 50 characters.' : '';
+            updateSubmitButton();
+        }
+
+        function validateForm() {
+            const isValidProductName = document.getElementById('productNameError').textContent.trim() === '';
+            const isValidDescription = document.getElementById('descriptionError').textContent.trim() === '';
+            const isValidSpecification1 = document.getElementById('specificationError1').textContent.trim() === '';
+            const isValidSpecification2 = document.getElementById('specificationError2').textContent.trim() === '';
+            const isValidSpecification3 = document.getElementById('specificationError3').textContent.trim() === '';
+            const isValidSpecification4 = document.getElementById('specificationError4').textContent.trim() === '';
+            const isValidCategory = document.getElementById('categoryError').textContent.trim() === '';
+            const isValidBrand = document.getElementById('brandError').textContent.trim() === '';
+            const isValidPrice = document.getElementById('priceError').textContent.trim() === '';
+            const isValidDiscountPrice = document.getElementById('discountPriceError').textContent.trim() === '';
+            const isValidStock = document.getElementById('stockError').textContent.trim() === '';
+            const isValidTags = document.getElementById('tagsError').textContent.trim() === '';
+
+
+            return isValidProductName && isValidDescription && isValidSpecification1 && isValidSpecification2 && isValidSpecification3 && isValidSpecification4 && isValidCategory && isValidBrand && isValidPrice && isValidDiscountPrice && isValidStock && isValidTags;
+        }
+    </script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $(".profile p").click(function () {
+                $(".profile-div").toggle();
+
+            });
+            $(".noti-icon").click(function () {
+                $(".notification-div").toggle();
+            });
+
+
+
+
+        });
+    </script>
+
+
+
+
+</body>
+
+
+</html>
